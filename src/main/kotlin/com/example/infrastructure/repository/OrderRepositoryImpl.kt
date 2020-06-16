@@ -1,9 +1,8 @@
 package com.example.infrastructure.repository
 
-import com.example.application.domain.exception.OrderTypeException
-import com.example.application.domain.model.entity.Order
-import com.example.application.domain.model.entity.toEntity
-import com.example.application.domain.model.entity.toRecord
+import com.example.domain.exception.OrderTypeException
+import com.example.domain.model.entity.Order
+import com.example.domain.repository.OrderRepository
 import javax.inject.Singleton
 
 @Singleton

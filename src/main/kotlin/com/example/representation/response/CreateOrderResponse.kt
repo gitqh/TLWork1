@@ -1,6 +1,6 @@
 package com.example.representation.response
 
-import com.example.application.domain.model.entity.Order
+import com.example.domain.model.entity.Order
 
 data class CreateOrderResponse(
         val id: Long,

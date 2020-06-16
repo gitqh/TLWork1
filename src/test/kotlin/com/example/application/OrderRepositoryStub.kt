@@ -1,8 +1,8 @@
 package com.example.application
 
-import com.example.application.domain.exception.OrderException
-import com.example.application.domain.model.entity.Order
-import com.example.infrastructure.repository.OrderRepository
+import com.example.domain.exception.OrderException
+import com.example.domain.model.entity.Order
+import com.example.domain.repository.OrderRepository
 import io.micronaut.context.annotation.Primary
 import javax.inject.Singleton
 

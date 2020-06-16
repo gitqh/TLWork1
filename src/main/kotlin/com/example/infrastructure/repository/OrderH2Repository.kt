@@ -1,5 +1,6 @@
 package com.example.infrastructure.repository
 
+import com.example.domain.model.entity.Order
 import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.jdbc.annotation.JdbcRepository
@@ -24,3 +25,7 @@ data class OrderRecord(
         var goodId: Long,
         var type: String,
         var createTime: Date)
+
+fun Order.toRecord() = OrderRecord(this.id, this.uid, this.goodId, this.type, this.createTime)
+
+fun OrderRecord.toEntity() = Order(this.id, this.uid, this.goodId, this.type, this.createTime)
