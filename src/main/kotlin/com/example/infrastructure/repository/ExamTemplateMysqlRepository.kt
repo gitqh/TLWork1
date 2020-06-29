@@ -10,13 +10,12 @@ import javax.persistence.Id
 
 @Repository
 @JdbcRepository(dialect = Dialect.H2)
-interface OrderTypeH2Repository : CrudRepository<OrderTypeRecord, Long> {
-    fun findByType(type: String): List<OrderRecord>
+interface ExamTemplateMysqlRepository : CrudRepository<ExamTemplateRecord, Long> {
+
 }
 
 @Entity
-data class OrderTypeRecord(
+data class ExamTemplateRecord(
         @Id
         @GeneratedValue
-        var id: Long,
-        var type: String)
+        var id: Long)
