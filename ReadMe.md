@@ -101,80 +101,80 @@ ResponseBody:
 
 Application Test：
     stub ExamRepositoryInterface -> ExamRepositoryInterface::findExamsByStudentIdAndStartTimeEndTime()返回：
-    [
-        {
-            "exam":{
-                "id":1,
-                "studentId":1,
-                "examTemplateId":1
-            },
-            "examPlan":{
-                "id":1,
-                "examId":1,
-                "studentId":1,
+        [
+            {
+                "exam":{
+                    "id":1,
+                    "studentId":1,
+                    "examTemplateId":1
+                },
+                "examPlan":{
+                    "id":1,
+                    "examId":1,
+                    "studentId":1,
+                    "starTime":"2020/01/20 08:00:00",
+                    "endTime":"2020/01/20 09:00:00"
+                },
+                "examTemplate":{
+                    "id":1,
+                    "name":"test1",
+                    "type":1
+                }
+            }
+        ]
+    ExamService::findExamsByStudentIdMouth(1,1)返回：
+        [
+            {
+                "examName":"test1",
+                "examType":1,
                 "starTime":"2020/01/20 08:00:00",
                 "endTime":"2020/01/20 09:00:00"
-            },
-            "examTemplate":{
-                "id":1,
-                "name":"test1",
-                "type":1
             }
-        }
-    ]
-    ExamService::findExamsByStudentIdMouth(1,1)返回：
-    [
-        {
-            "examName":"test1",
-            "examType":1,
-            "starTime":"2020/01/20 08:00:00",
-            "endTime":"2020/01/20 09:00:00"
-        }
-    ]
+        ]
 
 Domain Test：fake db
     exam表插入:
-    {
-        "id":1,
-        "studentId":1,
-        "examTemplateId":1
-    }
-    examPlan表插入:
-    {
-        "id":1,
-        "examId":1,
-        "studentId":1,
-        "starTime":"2020/01/20 08:00:00",
-        "endTime":"2020/01/20 09:00:00"
-    }
-    examTemplate表插入:
-    {
-        "id":1,
-        "name":"test1",
-        "type":1
-    }
-    ExamRepositoryImplement::findExamsByStudentIdAndStartTimeEndTime(1,"2020/01/20 00:00:00","2020/01/20 23:59:59")返回
-    [
         {
-            "exam":{
-                "id":1,
-                "studentId":1,
-                "examTemplateId":1
-            },
-            "examPlan":{
-                "id":1,
-                "examId":1,
-                "studentId":1,
-                "starTime":"2020/01/20 08:00:00",
-                "endTime":"2020/01/20 09:00:00"
-            },
-            "examTemplate":{
-                "id":1,
-                "name":"test1",
-                "type":1
-            }
+            "id":1,
+            "studentId":1,
+            "examTemplateId":1
         }
-    ]
+    examPlan表插入:
+        {
+            "id":1,
+            "examId":1,
+            "studentId":1,
+            "starTime":"2020/01/20 08:00:00",
+            "endTime":"2020/01/20 09:00:00"
+        }
+    examTemplate表插入:
+        {
+            "id":1,
+            "name":"test1",
+            "type":1
+        }
+    ExamRepositoryImplement::findExamsByStudentIdAndStartTimeEndTime(1,"2020/01/20 00:00:00","2020/01/20 23:59:59")返回
+        [
+            {
+                "exam":{
+                    "id":1,
+                    "studentId":1,
+                    "examTemplateId":1
+                },
+                "examPlan":{
+                    "id":1,
+                    "examId":1,
+                    "studentId":1,
+                    "starTime":"2020/01/20 08:00:00",
+                    "endTime":"2020/01/20 09:00:00"
+                },
+                "examTemplate":{
+                    "id":1,
+                    "name":"test1",
+                    "type":1
+                }
+            }
+        ]
 ```
 ## 我可以修改答案,我可以在考试结束前修改我提交的答案
 提交/修改答案
@@ -212,23 +212,27 @@ Domain Test：fake db
 
 Application Test：
     stub ExamRepositoryInterface -> ExamRepositoryInterface::findExamById(1)返回
-    {
-        "exam":{},
-        "student":{
-            "id":2
+        {
+            "exam":{
+        
+            },
+            "student":{
+                "id":2
+            }
         }
-    }
     ExamService::answer()抛出StudentNotMatch异常
 
 Domain Test：fake db
     exam表插入id为1，studentId为2的数据
     ExamRepositoryImplement::findExamById(1)返回:
-    {
-        "exam":{},
-        "student":{
-            "id":2
+        {
+            "exam":{
+        
+            },
+            "student":{
+                "id":2
+            }
         }
-    }
 ```
 * 当question不属于exam则返回400
 ```
@@ -237,7 +241,19 @@ Domain Test：fake db
 
 Application Test：
      stub ExamRepositoryInterface -> ExamRepositoryInterface::findExamById(1)返回
-        {"exam":{},"student":{"id":2},"questions":[{"id":2}]}
+        {
+            "exam":{
+        
+            },
+            "student":{
+                "id":2
+            },
+            "questions":[
+                {
+                    "id":2
+                }
+            ]
+        }
      ExamService::answer()抛出QuestionNotMatchExam异常
 
 Domain Test：fake db
@@ -245,7 +261,19 @@ Domain Test：fake db
     exam_tempalte表插入{"id":1}
     exam_template_question表插入{"id":1,"exam_template_id":1,"question_id":2}
     ExamRepositoryImplement::findExamById(1)返回
-        {"exam":{},"student":{"id":2},"questions":[{"id":2}]}
+        {
+            "exam":{
+        
+            },
+            "student":{
+                "id":2
+            },
+            "questions":[
+                {
+                    "id":2
+                }
+            ]
+        }
 ```
 * 如果提交时间早于exam开始的时间则返回400
 ```
@@ -254,14 +282,24 @@ Domain Test：fake db
 
 Application Test：
     stub ExamRepositoryInterface -> ExamRepositoryInterface::findExamById(1)返回
-        {"examPlan":{"startTime":"2022/12/20 00:00:00","endTime":"2022/12/21 00:00:00"}}
+        {
+            "examPlan":{
+                "startTime":"2022/12/20 00:00:00",
+                "endTime":"2022/12/21 00:00:00"
+            }
+        }
     ExamService::answer()抛出ExamNotStart异常
 
 Domain Test：fake db
     exam表插入{"id":1}
     exam_plan表插入{"id":1,"exam_id":1,"start_time":"2022/12/20 00:00:00","end_time":"2022/12/21" 00:00:00}
     ExamRepositoryImplement::findExamById(1)返回
-        {"examPlan":{"startTime":"2022/12/20 00:00:00","endTime":"2022/12/21 00:00:00"}}
+        {
+            "examPlan":{
+                "startTime":"2022/12/20 00:00:00",
+                "endTime":"2022/12/21 00:00:00"
+            }
+        }
 ```
 * 如果提交时间迟于exam结束的时间则返回400
 ```
@@ -270,14 +308,24 @@ Domain Test：fake db
 
 Application Test：
     stub ExamRepositoryInterface -> ExamRepositoryInterface::findExamById(1)返回
-        {"examPlan":{"startTime":"1990/12/20 00:00:00","endTime":"1990/12/21 00:00:00"}}
+        {
+            "examPlan":{
+                "startTime":"1990/12/20 00:00:00",
+                "endTime":"1990/12/21 00:00:00"
+            }
+        }
     ExamService::answer()抛出ExamIsEnd异常
 
 Domain Test：fake db
     exam表插入{"id":1}
     exam_plan表插入{"id":1,"exam_id":1,"start_time":"1990/12/20 00:00:00","end_time":"1990/12/21 00:00:00"}
     ExamRepositoryImplement::findExamById(1)返回
-        {"examPlan":{"startTime":"1990/12/20 00:00:00","endTime":"1990/12/21 00:00:00"}}
+        {
+            "examPlan":{
+                "startTime":"1990/12/20 00:00:00",
+                "endTime":"1990/12/21 00:00:00"
+            }
+        }
 ```
 * 如果在正确的时间内，则允许多次提交，并每次都覆盖上一次的提交
 ```
@@ -291,7 +339,13 @@ Application Test：
 Domain Test：fake db
     ExamRepositoryImplement::saveAnswerByExamIdQuestionId(1,1,{"answer":1,"type":1,"answerText":""})
     StudentExamAnswerRepository::findAnswerByExamIdQuestionId(1,1)返回
-        {"examId":1,"questionId":1,"answer":1,"type":1,"answerText":""}
+        {
+            "examId":1,
+            "questionId":1,
+            "answer":1,
+            "type":1,
+            "answerText":""
+        }
 ```
 ## 我需要能给题目快速打标签,我可以随时跳转到标记的题目，不需要我慢慢翻找，标签名字相同则视为同一标签
 ### 获取考试可以打的标签
@@ -315,14 +369,33 @@ ResponseBody:
     > Get /labels?type="exam"
 
 Application Test：
-    stub LabelRepositoryInterface -> LabelRepositoryInterface::findByType()返回[{id:1,type:"exam",name:"test"}]
+    stub LabelRepositoryInterface -> LabelRepositoryInterface::findByType()返回
+        [
+            {
+                "id":1,
+                "type":"exam",
+                "name":"test"
+            }
+        ]
     LabelService::getLabelByType()返回
-        [{"id":1,"type":"exam","name":"test"}]
+        [
+            {
+                "id":1,
+                "type":"exam",
+                "name":"test"
+            }
+        ]
 
 Domain Test：fake db
     label表插入{"id":1,"name":"test","type":"exam"}
     LabelRepositoryImplement::findByType("exam")返回[
-        [{"id":1,"type":"exam","name":"test"}]
+        [
+            {
+                "id":1,
+                "type":"exam",
+                "name":"test"
+            }
+        ]
 ```
 ### 给考题打标签
 ```
@@ -368,7 +441,13 @@ ResponseBody:
 
 Application Test：
     stub LabelRepositoryInterface -> LabelRepositoryInterface::findByType()返回
-        [{"id":1,"type":"exam","name":"test"}]
+        [
+            {
+                "id":1,
+                "type":"exam",
+                "name":"test"
+            }
+        ]
     ExamService::setQuestionLabel() 报LabelNotExist异常
 
 Domain Test：fake db
@@ -391,7 +470,14 @@ Application Test：
 Domain Test：fake db
     ExamQuestionRepositoryImplement::saveExamQuestionLabel(1,1,[1])
     ExamLabel::findByExamIdQuestionId(1,1)返回
-        [{"id":1,"examId":1,"examTemplateQuestionId":1,"labelId":1}]
+        [
+            {
+                "id":1,
+                "examId":1,
+                "examTemplateQuestionId":1,
+                "labelId":1
+            }
+        ]
 ```
 * 同一考题不能打上相同的多个标签，如果有相同名称则忽略这次操作
 ```
@@ -410,7 +496,14 @@ Domain Test：fake db
     ExamQuestionRepositoryImplement::saveExamQuestionLabel(1,1,[1])
     ExamQuestionRepositoryImplement::saveExamQuestionLabel(1,1,[1])
     ExamLabel::findByExamIdQuestionId(1,1)返回
-        [{"id":1,"examId":1,"examTemplateQuestionId":1,"labelId":1}]
+        [
+            {
+                "id":1,
+                "examId":1,
+                "examTemplateQuestionId":1,
+                "labelId":1
+            }
+        ]
 ```
 
 ### 获取考题的标签
@@ -444,8 +537,20 @@ ResponseBody:
 
 Application Test：
     stub ExamQuestionRepositoryInterface -> ExamQuestionRepositoryInterface::getLabels()返回
-        [{"id":1,"examId":1,"labelId":1,"examTemplateQuestionId":1},
-         {"id":2,"examId":1,"labelId":2,"examTemplateQuestionId":1}]
+        [
+            {
+                "id":1,
+                "examId":1,
+                "labelId":1,
+                "examTemplateQuestionId":1
+            },
+            {
+                "id":2,
+                "examId":1,
+                "labelId":2,
+                "examTemplateQuestionId":1
+            }
+        ]
     ExamService::getExamQuestionLabelIds() 返回
         [1,2]
 
@@ -453,8 +558,20 @@ Domain Test：fake db
     examLabelRepository::saveLabel({"id":1,"examId":1,"labelId":1,"examTemplateQuestionId":1})
     examLabelRepository::saveLabel({"id":2,"examId":1,"labelId":2,"examTemplateQuestionId":1})
     ExamQuestionRepositoryImplement::getLabels(1,1)返回
-        [{"id":1,"examId":1,"labelId":1,"examTemplateQuestionId":1},
-         {"id":2,"examId":1,"labelId":2,"examTemplateQuestionId":1}]
+        [
+            {
+                "id":1,
+                "examId":1,
+                "labelId":1,
+                "examTemplateQuestionId":1
+            },
+            {
+                "id":2,
+                "examId":1,
+                "labelId":2,
+                "examTemplateQuestionId":1
+            }
+        ]
 ```
 ### 为本次考卷的考题移除标签 
 ```
@@ -491,7 +608,14 @@ Domain Test：fake db
     examLabelRepository::saveLabel({"id":2,"examId":1,"labelId":2,"examTemplateQuestionId":1})
     ExamQuestionRepositoryImplement::deleteLabel(1,1,1)
     ExamLabelRepository::getLabelByExamIdExamTemplateQuestionId(1,1)返回
-        [{"id":2,"examId":1,"labelId":2,"examTemplateQuestionId":1}]
+        [
+            {
+                "id":2,
+                "examId":1,
+                "labelId":2,
+                "examTemplateQuestionId":1
+            }
+        ]
 ```
 ### 获取本次考卷的所有标签
 ``` 
@@ -527,15 +651,45 @@ ResponseBody:
 Application Test：
     stub ExamQuestionRepositoryInterface -> ExamQuestionRepositoryInterface::getExamLabels(1)返回
         [
-            {"examLabelId":1,"examId":1,"labelId":1,"examTemplateQuestionId":1,"labelName":"label1"},
-            {"examLabelId":2,"examId":1,"labelId":2,"examTemplateQuestionId":2,"labelName":"label2"},
-            {"examLabelId":3,"examId":1,"labelId":2,"examTemplateQuestionId":3,"labelName":"label2"}
+            {
+                "examLabelId":1,
+                "examId":1,
+                "labelId":1,
+                "examTemplateQuestionId":1,
+                "labelName":"label1"
+            },
+            {
+                "examLabelId":2,
+                "examId":1,
+                "labelId":2,
+                "examTemplateQuestionId":2,
+                "labelName":"label2"
+            },
+            {
+                "examLabelId":3,
+                "examId":1,
+                "labelId":2,
+                "examTemplateQuestionId":3,
+                "labelName":"label2"
+            }
         ]
     ExamService::getExamLabels(1) 返回
          [
-            {"examLabelId":1,"labelId":1,"labelName":"label1"},
-            {"examLabelId":2,"labelId":2,"labelName":"label2"},
-            {"examLabelId":3,"labelId":2,"labelName":"label2"}
+             {
+                 "examLabelId":1,
+                 "labelId":1,
+                 "labelName":"label1"
+             },
+             {
+                 "examLabelId":2,
+                 "labelId":2,
+                 "labelName":"label2"
+             },
+             {
+                 "examLabelId":3,
+                 "labelId":2,
+                 "labelName":"label2"
+             }
          ]
 
 Domain Test：fake db
@@ -546,9 +700,27 @@ Domain Test：fake db
     examLabelRepository::saveLabel({"id":2,"examId":1,"labelId":2,"examTemplateQuestionId":3})
     ExamQuestionRepositoryImplement::getExamLabels(1)返回
         [
-            {"examLabelId":1,"examId":1,"labelId":1,"examTemplateQuestionId":1,"labelName":"label1"},
-            {"examLabelId":2,"examId":1,"labelId":2,"examTemplateQuestionId":2,"labelName":"label2"},
-            {"examLabelId":3,"examId":1,"labelId":2,"examTemplateQuestionId":3,"labelName":"label2"}
+            {
+                "examLabelId":1,
+                "examId":1,
+                "labelId":1,
+                "examTemplateQuestionId":1,
+                "labelName":"label1"
+            },
+            {
+                "examLabelId":2,
+                "examId":1,
+                "labelId":2,
+                "examTemplateQuestionId":2,
+                "labelName":"label2"
+            },
+            {
+                "examLabelId":3,
+                "examId":1,
+                "labelId":2,
+                "examTemplateQuestionId":3,
+                "labelName":"label2"
+            }
         ]
 ```
 ### 获取标签所对应的所有考题ID
