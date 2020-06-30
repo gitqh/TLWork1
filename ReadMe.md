@@ -12,10 +12,10 @@
 ```
 test目录下分为3个子目录:
     -application 
-    -domain 
+    -infrastructure 
     -representation
-分别对应3种测试工序，其中representation为API测试，如无契约测试的必要可以忽略
-其中domain启动了MicronautTest的上下文，通过配置将Mysql Fake成了H2内存数据库
+分别对应3种测试，其中representation为API测试，也可以和application测试合并
+其中infrastructure启动了框架的上下文，通过配置将Mysql Fake成了H2内存数据库
 ```
 # E-R图
 ![E-R图](resouce/E-R.png)

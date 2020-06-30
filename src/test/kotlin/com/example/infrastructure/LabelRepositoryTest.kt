@@ -1,4 +1,4 @@
-package com.example.domian
+package com.example.infrastructure
 
 import com.example.infrastructure.repository.LabelRepositoryImpl
 import io.kotlintest.specs.StringSpec
