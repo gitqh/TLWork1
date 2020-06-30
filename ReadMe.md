@@ -4,8 +4,20 @@
 * mysql
 * kotlin test
 * docker
-# 架构图/工序图
-![架构图](resouce/架构图.jpg)
+# 架构图
+![整体架构](resouce/整体架构.jpg)
+# 代码架构
+![代码分层](resouce/代码分层.jpg)
+# 测试安排
+![Test](resouce/test.jpg)
+```
+test目录下分为3个子目录:
+    -application 
+    -domain 
+    -representation
+分别对应3种测试工序，其中representation为API测试，如无契约测试的必要可以忽略
+其中domain启动了MicronautTest的上下文，通过配置将Mysql Fake成了H2内存数据库
+```
 # E-R图
 ![E-R图](resouce/E-R.png)
 # 领域模型
