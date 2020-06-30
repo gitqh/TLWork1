@@ -4,7 +4,7 @@
 * mysql
 * kotlin test
 * docker
-# 架构图
+# 架构图/工序图
 ![架构图](resouce/架构图.jpg)
 # E-R图
 ![E-R图](resouce/E-R.png)
