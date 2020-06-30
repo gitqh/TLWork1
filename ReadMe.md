@@ -1,9 +1,10 @@
 # 技术栈
-* kotlin
-* micronaut framework
-* mysql
-* kotlin test
-* docker
+* Kotlin
+* Micronaut Framework
+* Mysql
+* H2
+* Kotlin Test
+* Docker
 # 架构图
 ![整体架构](resouce/整体架构.jpg)
 # 代码架构
