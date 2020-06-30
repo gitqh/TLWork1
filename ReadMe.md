@@ -5,12 +5,10 @@
 * H2
 * Kotlin Test
 * Docker
-# 架构图
+# 整体架构
 ![整体架构](resouce/整体架构.jpg)
-# 代码架构
-![代码分层](resouce/代码分层.jpg)
-# 测试安排
-![Test](resouce/test.jpg)
+# 工序
+![Test](resouce/工序.jpg)
 ```
 test目录下分为3个子目录:
     -application 
