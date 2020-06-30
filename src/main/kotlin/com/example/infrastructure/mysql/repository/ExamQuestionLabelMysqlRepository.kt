@@ -1,4 +1,4 @@
-package com.example.infrastructure.repository
+package com.example.infrastructure.mysql.repository
 
 import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Repository
@@ -10,12 +10,12 @@ import javax.persistence.Id
 
 @Repository
 @JdbcRepository(dialect = Dialect.H2)
-interface StudentMysqlRepository : CrudRepository<StudentRecord, Long> {
+interface ExamQuestionLabelMysqlRepository : CrudRepository<ExamQuestionLabelRecord, Long> {
 
 }
 
 @Entity
-data class StudentRecord(
+data class ExamQuestionLabelRecord(
         @Id
         @GeneratedValue
         var id: Long)

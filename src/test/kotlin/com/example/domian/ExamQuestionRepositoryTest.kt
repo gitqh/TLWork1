@@ -1,6 +1,6 @@
 package com.example.domian
 
-import com.example.domain.repository.ExamQuestionRepositoryImpl
+import com.example.infrastructure.repository.ExamQuestionRepositoryImpl
 import io.kotlintest.specs.StringSpec
 import io.micronaut.test.annotation.MicronautTest
 

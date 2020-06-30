@@ -64,7 +64,7 @@ Application Test：
     stub StudentRepositoryInterface -> StudentRepositoryInterface::findStudentById返回null
     StudentService::getStudent() 抛出异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     student表是个空表，StudentRepository::findStudentById返回null
 ```
 * 当学生携带过期token请求时，应该返回token过期，402
@@ -143,7 +143,7 @@ Application Test：
             }
         ]
 
-Domain Test：fake db
+Infrastructure Test：fake db
     exam表插入:
         {
             "id":1,
@@ -212,7 +212,7 @@ Application Test：
     stub ExamRepositoryInterface -> ExamRepositoryInterface::findExamById(1)返回null
     ExamService::answer()抛出ExamNotExist异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     exam表插入id为2的数据
     ExamRepositoryImplement::findStudentById(1)返回null
 ```
@@ -233,7 +233,7 @@ Application Test：
         }
     ExamService::answer()抛出StudentNotMatch异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     exam表插入id为1，studentId为2的数据
     ExamRepositoryImplement::findExamById(1)返回:
         {
@@ -267,7 +267,7 @@ Application Test：
         }
      ExamService::answer()抛出QuestionNotMatchExam异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     exam表插入{"id":1,"exam_template_id":1}
     exam_tempalte表插入{"id":1}
     exam_template_question表插入{"id":1,"exam_template_id":1,"question_id":2}
@@ -301,7 +301,7 @@ Application Test：
         }
     ExamService::answer()抛出ExamNotStart异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     exam表插入{"id":1}
     exam_plan表插入{"id":1,"exam_id":1,"start_time":"2022/12/20 00:00:00","end_time":"2022/12/21" 00:00:00}
     ExamRepositoryImplement::findExamById(1)返回
@@ -327,7 +327,7 @@ Application Test：
         }
     ExamService::answer()抛出ExamIsEnd异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     exam表插入{"id":1}
     exam_plan表插入{"id":1,"exam_id":1,"start_time":"1990/12/20 00:00:00","end_time":"1990/12/21 00:00:00"}
     ExamRepositoryImplement::findExamById(1)返回
@@ -347,7 +347,7 @@ Application Test：
     stub ExamRepositoryInterface -> ExamRepositoryInterface::saveAnswerByExamIdQuestionId()无返回
     ExamService::answer()无异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     ExamRepositoryImplement::saveAnswerByExamIdQuestionId(1,1,{"answer":1,"type":1,"answerText":""})
     StudentExamAnswerRepository::findAnswerByExamIdQuestionId(1,1)返回
         {
@@ -397,7 +397,7 @@ Application Test：
             }
         ]
 
-Domain Test：fake db
+Infrastructure Test：fake db
     label表插入{"id":1,"name":"test","type":"exam"}
     LabelRepositoryImplement::findByType("exam")返回[
         [
@@ -461,7 +461,7 @@ Application Test：
         ]
     ExamService::setQuestionLabel() 报LabelNotExist异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     label表插入{"id":1,"name":"test","type":"exam"}
     LabelRepositoryImplement::findById(2)返回null
 ```
@@ -478,7 +478,7 @@ Application Test：
     stub ExamQuestionRepositoryInterface -> ExamQuestionRepositoryInterface::saveExamQuestionLabel()无异常
     ExamService::saveExamQuestionLabel() 无异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     ExamQuestionRepositoryImplement::saveExamQuestionLabel(1,1,[1])
     ExamLabel::findByExamIdQuestionId(1,1)返回
         [
@@ -503,7 +503,7 @@ Application Test：
     stub ExamQuestionRepositoryInterface -> ExamQuestionRepositoryInterface::saveExamQuestionLabel()无异常
     ExamService::saveExamQuestionLabel() 无异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     ExamQuestionRepositoryImplement::saveExamQuestionLabel(1,1,[1])
     ExamQuestionRepositoryImplement::saveExamQuestionLabel(1,1,[1])
     ExamLabel::findByExamIdQuestionId(1,1)返回
@@ -565,7 +565,7 @@ Application Test：
     ExamService::getExamQuestionLabelIds() 返回
         [1,2]
 
-Domain Test：fake db
+Infrastructure Test：fake db
     examLabelRepository::saveLabel({"id":1,"examId":1,"labelId":1,"examTemplateQuestionId":1})
     examLabelRepository::saveLabel({"id":2,"examId":1,"labelId":2,"examTemplateQuestionId":1})
     ExamQuestionRepositoryImplement::getLabels(1,1)返回
@@ -614,7 +614,7 @@ Application Test：
     stub ExamQuestionRepositoryInterface -> ExamQuestionRepositoryInterface::deleteLabel(1,1,1)返回无异常
     ExamService::deleteExamQuestionLabelById(1,1,1) 返回无异常
 
-Domain Test：fake db
+Infrastructure Test：fake db
     examLabelRepository::saveLabel({"id":1,"examId":1,"labelId":1,"examTemplateQuestionId":1})
     examLabelRepository::saveLabel({"id":2,"examId":1,"labelId":2,"examTemplateQuestionId":1})
     ExamQuestionRepositoryImplement::deleteLabel(1,1,1)
@@ -703,7 +703,7 @@ Application Test：
              }
          ]
 
-Domain Test：fake db
+Infrastructure Test：fake db
     labelRepository::saveLabel({"id":1,"name":"label1","type":"exam"})
     labelRepository::saveLabel({"id":2,"name":"label2","type":"exam"})
     examLabelRepository::saveLabel({"id":1,"examId":1,"labelId":1,"examTemplateQuestionId":1})
@@ -765,7 +765,7 @@ Application Test：
     ExamService::getExamQuestionIdsByLabelId(1) 返回
         [2,3]
 
-Domain Test：fake db
+Infrastructure Test：fake db
     labelRepository::saveLabel({"id":1,"name":"label1","type":"exam"})
     labelRepository::saveLabel({"id":2,"name":"label2","type":"exam"})
     examLabelRepository::saveLabel({"id":1,"examId":1,"labelId":1,"examTemplateQuestionId":1})
