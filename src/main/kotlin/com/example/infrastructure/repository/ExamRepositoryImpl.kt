@@ -1,6 +1,7 @@
 package com.example.infrastructure.repository
 
 import com.example.domain.model.entity.Exam
+import com.example.domain.model.entity.ExamInfo
 import com.example.domain.repository.ExamRepository
 import com.example.infrastructure.mysql.repository.ExamMysqlRepository
 import com.example.infrastructure.mysql.repository.ExamPlanMysqlRepository
@@ -16,7 +17,7 @@ class ExamRepositoryImpl(
 ) : ExamRepository {
     override fun findExamById(id: Long): Optional<Exam> {
         return examMysqlRepository.findById(id).map {
-            Exam(it.id)
+            Exam(ExamInfo(it.id, it.studentId), emptyList())
         }
     }
 

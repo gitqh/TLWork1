@@ -1,4 +1,7 @@
 package com.example.application.command
 
-class AnswerCommand {
-}
+data class AnswerCommand (
+    val studentId: Long,
+    val examId: Long,
+    val questionId: Long
+)

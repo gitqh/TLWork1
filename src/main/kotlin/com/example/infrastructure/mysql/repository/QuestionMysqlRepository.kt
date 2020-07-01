@@ -17,5 +17,4 @@ interface QuestionMysqlRepository : CrudRepository<QuestionRecord, Long> {
 @Entity
 data class QuestionRecord(
         @Id
-        @GeneratedValue
         var id: Long)

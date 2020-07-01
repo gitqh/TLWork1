@@ -21,8 +21,8 @@ class ExamAPITest(
         @Client("/") private val client: HttpClient
 ) : StringSpec({
     "test answer api" {
-        val mock = getMock(examService)
-        every { mock.answer(any(), any(), any()) } just Runs
+        val examServiceStub = getMock(examService)
+        every { examServiceStub.answer(any()) } just Runs
         val body = """
             {
                 "type":1,

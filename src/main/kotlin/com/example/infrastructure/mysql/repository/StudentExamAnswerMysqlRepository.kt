@@ -17,5 +17,4 @@ interface StudentExamAnswerMysqlRepository : CrudRepository<StudentExamAnswerRec
 @Entity
 data class StudentExamAnswerRecord(
         @Id
-        @GeneratedValue
         var id: Long)

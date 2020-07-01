@@ -17,5 +17,4 @@ interface ExamQuestionLabelMysqlRepository : CrudRepository<ExamQuestionLabelRec
 @Entity
 data class ExamQuestionLabelRecord(
         @Id
-        @GeneratedValue
         var id: Long)

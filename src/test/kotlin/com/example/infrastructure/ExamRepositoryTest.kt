@@ -13,7 +13,14 @@ class ExamRepositoryTest(
         val examMysqlRepository: ExamMysqlRepository
 ) : StringSpec({
     "examRepository find not exist exam id should be empty"{
-        examMysqlRepository.save(ExamRecord(2))
+        examMysqlRepository.save(ExamRecord(2, 1))
         examRepository.findExamById(1).isEmpty shouldBe true
+    }
+    "examRepository could find exam when exam id is exist"{
+        examMysqlRepository.save(ExamRecord(1, 2))
+        val exam = examRepository.findExamById(1)
+        exam.isPresent shouldBe true
+        exam.get().exam.id shouldBe 1
+        exam.get().exam.studentId shouldBe 2
     }
 })

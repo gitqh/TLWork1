@@ -17,5 +17,4 @@ interface StudentMysqlRepository : CrudRepository<StudentRecord, Long> {
 @Entity
 data class StudentRecord(
         @Id
-        @GeneratedValue
         var id: Long)

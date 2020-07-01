@@ -17,5 +17,4 @@ interface ExamPlanMysqlRepository : CrudRepository<ExamPlanRecord, Long> {
 @Entity
 data class ExamPlanRecord(
         @Id
-        @GeneratedValue
         var id: Long)

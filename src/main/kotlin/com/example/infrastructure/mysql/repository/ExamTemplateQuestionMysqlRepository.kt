@@ -17,5 +17,4 @@ interface ExamTemplateQuestionMysqlRepository : CrudRepository<ExamTemplateQuest
 @Entity
 data class ExamTemplateQuestionRecord(
         @Id
-        @GeneratedValue
         var id: Long)

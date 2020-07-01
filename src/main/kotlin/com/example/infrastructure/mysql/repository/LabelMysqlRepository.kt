@@ -17,5 +17,4 @@ interface LabelMysqlRepository : CrudRepository<LabelRecord, Long> {
 @Entity
 data class LabelRecord(
         @Id
-        @GeneratedValue
         var id: Long)

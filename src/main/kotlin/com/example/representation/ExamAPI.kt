@@ -13,7 +13,7 @@ class ExamAPI(
 ) {
     @Put("/{examId}/questions/{questionId}/answer")
     fun answer(@PathVariable examId: Long, @PathVariable questionId: Long): Response<Void> {
-        examService.answer(examId, questionId, AnswerCommand())
+        examService.answer(AnswerCommand(1, examId, questionId))
         return Response(0, "OK", null)
     }
 

@@ -263,7 +263,7 @@ Application Test：
                 "id":2
             }
         }
-    ExamService::answer()抛出StudentNotMatch异常
+    ExamService::answer()抛出ExamStudentNotMatch异常
 
 Infrastructure Test：fake db
     exam表插入id为1，studentId为2的数据
