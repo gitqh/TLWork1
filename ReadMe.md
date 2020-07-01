@@ -6,9 +6,9 @@
 * Kotlin Test
 * Docker
 # 系统架构
-![整体架构](resouce/整体架构.jpg)
+![整体架构](resouces/整体架构.jpg)
 # 整洁架构与工序
-![Test](resouce/工序.jpg)
+![Test](resouces/工序.jpg)
 关于Test目录
 ```
 test目录下分为3个子目录:
@@ -28,9 +28,9 @@ DB:通过H2（或者Mariadb4j）内存数据库来替代mysql，或者通过dock
 API:通过SpringCloudContract实现，见contracts目录，或搭建内网YApi系统
 ```
 # E-R图
-![E-R图](resouce/E-R.png)
+![E-R图](resouces/E-R.png)
 # 领域模型
-![E-R图](resouce/domain.jpg)
+![E-R图](resouces/domain.jpg)
 # 名词解释
 * exam-templates 试卷的模板，模板上含有试卷的试题
 * exam 试卷关联模板id，每个学生每场考试都有唯一的examId
