@@ -18,9 +18,14 @@ test目录下分为3个子目录:
 分别对应3种测试，其中representation为API测试，也可以和application测试合并
 其中infrastructure启动了框架的上下文，通过配置将Mysql Fake成了H2内存数据库
 ```
-关于外部系统的Stub
+关于接口的Stub
 ```
-通过SpringCloudContract实现，见contracts目录
+Stub的接口均可在Test目录下自行实现，通过@Replaces注解实现接口的Stub，见application目录下的stub目录
+```
+关于外部系统的Fake
+```
+DB:通过H2（或者Mariadb4j）内存数据库来替代mysql，或者通过docker启动mysql实例
+API:通过SpringCloudContract实现，见contracts目录，或搭建内网YApi系统
 ```
 # E-R图
 ![E-R图](resouce/E-R.png)
