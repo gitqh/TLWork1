@@ -376,7 +376,9 @@ Infrastructure Test：fake db
 
 Application Test：
     stub ExamRepositoryInterface -> ExamRepositoryInterface::saveAnswerByExamIdQuestionId()无返回
-    ExamService::answer()无异常
+    ExamService::answer(1)无异常
+    ExamService::answer(2)无异常
+    ExamService::getAnswer() 为2
 
 Infrastructure Test：fake db
     ExamRepositoryImplement::saveAnswerByExamIdQuestionId(1,1,{"answer":1,"type":1,"answerText":""})

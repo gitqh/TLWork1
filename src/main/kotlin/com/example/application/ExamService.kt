@@ -31,4 +31,8 @@ class ExamService(
                 answerCommand.answerText
         ), answerCommand.examId, answerCommand.questionId)
     }
+
+    fun getAnswer(examId: Long, questionId: Long): QuestionAnswer? {
+        return examQuestionRepository.getAnswerByExamIdQuestionId(examId, questionId)
+    }
 }

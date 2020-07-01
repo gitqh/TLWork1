@@ -10,6 +10,7 @@ import com.example.domain.model.entity.ExamInfo
 import com.example.domain.model.entity.ExamPlan
 import com.example.domain.model.entity.ExamTemplate
 import com.example.domain.repository.ExamRepository
+import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import io.micronaut.test.annotation.MicronautTest
@@ -74,6 +75,18 @@ class ExamServiceTest(
                         examTemplate = ExamTemplate(1, "test", 1),
                         plan = ExamPlan(LocalDateTime.now().minusHours(1), LocalDateTime.now().plusHours(1))))
         examService.answer(AnswerCommand(1, 1, 1, 1, 1, ""))
+    }
+
+    "i can commit answer same question more times"{
+        val examRepositoryStub = getMock(examRepository)
+        every { examRepositoryStub.findExamById(1) } returns
+                Optional.of(Exam(exam = ExamInfo(1, 1),
+                        examTemplate = ExamTemplate(1, "test", 1),
+                        plan = ExamPlan(LocalDateTime.now().minusHours(1), LocalDateTime.now().plusHours(1))))
+        examService.answer(AnswerCommand(1, 1, 1, 1, 1, "one"))
+        examService.answer(AnswerCommand(1, 1, 1, 1, 1, "two"))
+        examService.getAnswer(1, 1)!!.answerText shouldBe "two"
+
     }
 }) {
     @MockBean(ExamRepository::class)
