@@ -17,5 +17,6 @@ interface ExamMysqlRepository : CrudRepository<ExamRecord, Long> {
 data class ExamRecord(
         @Id
         var id: Long,
-        var studentId: Long
+        var studentId: Long,
+        var examTemplateId: Long
 )

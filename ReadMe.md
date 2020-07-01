@@ -21,12 +21,11 @@ test目录下分为3个子目录:
 ```
 关于接口的Stub
 ```
-Stub的接口均可在Test目录下自行实现，通过@Replaces注解实现接口的Stub，见application目录下的stub目录
+StubBean通过框架测试套件注入
 ```
 关于外部系统的Fake
 ```
 DB:通过H2（或者Mariadb4j）内存数据库来替代mysql，或者通过docker启动mysql实例
-API:通过SpringCloudContract实现，见contracts目录，或搭建内网YApi系统
 ```
 # E-R图
 ![E-R图](resouces/E-R.png)

@@ -1,6 +1,5 @@
 package com.example.infrastructure.mysql.repository
 
-import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.jdbc.annotation.JdbcRepository
 import io.micronaut.data.model.query.builder.sql.Dialect
@@ -17,4 +16,7 @@ interface ExamTemplateMysqlRepository : CrudRepository<ExamTemplateRecord, Long>
 @Entity
 data class ExamTemplateRecord(
         @Id
-        var id: Long)
+        var id: Long,
+        var name: String,
+        var type: Int
+)
