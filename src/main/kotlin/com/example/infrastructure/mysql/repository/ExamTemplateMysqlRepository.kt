@@ -9,9 +9,7 @@ import javax.persistence.Id
 
 @Repository
 @JdbcRepository(dialect = Dialect.H2)
-interface ExamTemplateMysqlRepository : CrudRepository<ExamTemplateRecord, Long> {
-
-}
+interface ExamTemplateMysqlRepository : CrudRepository<ExamTemplateRecord, Long>
 
 @Entity
 data class ExamTemplateRecord(
