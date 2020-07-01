@@ -94,6 +94,25 @@ Http Header：
 ```
 ## API契约测试
 这个不一个个写了，参考下面的API契约完成契约测试
+```
+representation test ->
+    "test label api" {
+        val mock = getMock(examService)
+             every { mock.answer(any(), any(), any()) } answers {
+                 Unit
+             }
+             val body = """
+                 {
+                     "type":1,
+                     "answer":1
+                     "answer_text":""
+                 }
+             """.trimIndent()
+             val retrieve = client.toBlocking().retrieve(HttpRequest.PUT("/exams/1/questions/1/answer", body), Response::class.java)
+             retrieve.code shouldBe 0
+         }
+```
+
 ## 我需要知道所有科目考试的安排
 获取考试日程安排 
 ```
