@@ -5,6 +5,7 @@
 * H2
 * Kotlin Test
 * Docker
+* Spring Cloud Contract
 # 系统架构
 ![整体架构](resouces/整体架构.jpg)
 # 架构与工序
