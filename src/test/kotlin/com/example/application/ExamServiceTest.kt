@@ -1,7 +1,9 @@
 package com.example.application
 
 import com.example.application.command.AnswerCommand
+import com.example.domain.exception.ExamIsEndException
 import com.example.domain.exception.ExamNotExistException
+import com.example.domain.exception.ExamNotStartException
 import com.example.domain.exception.ExamStudentNotMatch
 import com.example.domain.model.entity.Exam
 import com.example.domain.model.entity.ExamInfo
@@ -28,7 +30,7 @@ class ExamServiceTest(
         val examRepositoryStub = getMock(examRepository)
         every { examRepositoryStub.findExamById(1) } returns Optional.empty()
         shouldThrow<ExamNotExistException> {
-            examService.answer(AnswerCommand(1, 1, 1))
+            examService.answer(AnswerCommand(1, 1, 1, 1, 1, ""))
         }
     }
 
@@ -39,8 +41,39 @@ class ExamServiceTest(
                         examTemplate = ExamTemplate(1, "test", 1),
                         plan = ExamPlan(LocalDateTime.now(), LocalDateTime.now())))
         shouldThrow<ExamStudentNotMatch> {
-            examService.answer(AnswerCommand(1, 1, 1))
+            examService.answer(AnswerCommand(1, 1, 1, 1, 1, ""))
         }
+    }
+
+    "i can't commit answer when exam is not start"{
+        val examRepositoryStub = getMock(examRepository)
+        every { examRepositoryStub.findExamById(1) } returns
+                Optional.of(Exam(exam = ExamInfo(1, 1),
+                        examTemplate = ExamTemplate(1, "test", 1),
+                        plan = ExamPlan(LocalDateTime.now().plusHours(1), LocalDateTime.now().plusHours(2))))
+        shouldThrow<ExamNotStartException> {
+            examService.answer(AnswerCommand(1, 1, 1, 1, 1, ""))
+        }
+    }
+
+    "i can't commit answer when exam is ended"{
+        val examRepositoryStub = getMock(examRepository)
+        every { examRepositoryStub.findExamById(1) } returns
+                Optional.of(Exam(exam = ExamInfo(1, 1),
+                        examTemplate = ExamTemplate(1, "test", 1),
+                        plan = ExamPlan(LocalDateTime.now().minusHours(2), LocalDateTime.now().minusHours(2))))
+        shouldThrow<ExamIsEndException> {
+            examService.answer(AnswerCommand(1, 1, 1, 1, 1, ""))
+        }
+    }
+
+    "i can commit answer"{
+        val examRepositoryStub = getMock(examRepository)
+        every { examRepositoryStub.findExamById(1) } returns
+                Optional.of(Exam(exam = ExamInfo(1, 1),
+                        examTemplate = ExamTemplate(1, "test", 1),
+                        plan = ExamPlan(LocalDateTime.now().minusHours(1), LocalDateTime.now().plusHours(1))))
+        examService.answer(AnswerCommand(1, 1, 1, 1, 1, ""))
     }
 }) {
     @MockBean(ExamRepository::class)

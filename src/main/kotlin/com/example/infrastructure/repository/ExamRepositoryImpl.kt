@@ -28,5 +28,4 @@ class ExamRepositoryImpl(
                     }.first())
         }
     }
-
 }
