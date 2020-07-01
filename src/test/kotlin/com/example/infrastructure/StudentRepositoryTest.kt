@@ -4,7 +4,7 @@ import com.example.infrastructure.repository.StudentRepositoryImpl
 import io.kotlintest.specs.StringSpec
 import io.micronaut.test.annotation.MicronautTest
 
-@MicronautTest(environments = ["test"])
+@MicronautTest
 class StudentRepositoryTest(
         val studentRepositoryImpl: StudentRepositoryImpl
 ) : StringSpec({

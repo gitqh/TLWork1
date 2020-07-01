@@ -14,6 +14,5 @@ class ExamService(
 ) {
     fun answer(examId: Long, questionId: Long, answerCommand: AnswerCommand) {
         val exam = examRepository.findExamById(examId)
-        return
     }
 }

@@ -7,7 +7,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import io.micronaut.test.annotation.MicronautTest
 
-@MicronautTest(environments = ["test"])
+@MicronautTest
 class ExamRepositoryTest(
         val examRepository: ExamRepositoryImpl,
         val examMysqlRepository: ExamMysqlRepository

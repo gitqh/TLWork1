@@ -4,7 +4,9 @@ import com.example.application.command.AnswerCommand
 import com.example.domain.exception.ExamNotExistException
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
+import io.micronaut.test.annotation.MicronautTest
 
+@MicronautTest
 class ExamServiceTest(
         val examService: ExamService
 ) : StringSpec({

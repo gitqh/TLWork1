@@ -7,20 +7,22 @@ import io.kotlintest.specs.StringSpec
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
+import io.micronaut.test.annotation.MicronautTest
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.kotlintest.MicronautKotlinTestExtension.getMock
+import io.mockk.Runs
 import io.mockk.every
+import io.mockk.just
 import io.mockk.mockk
 
+@MicronautTest
 class ExamAPITest(
         val examService: ExamService,
         @Client("/") private val client: HttpClient
 ) : StringSpec({
-    "test label api" {
+    "test answer api" {
         val mock = getMock(examService)
-        every { mock.answer(any(), any(), any()) } answers {
-            Unit
-        }
+        every { mock.answer(any(), any(), any()) } just Runs
         val body = """
             {
                 "type":1,
