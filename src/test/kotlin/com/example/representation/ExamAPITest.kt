@@ -33,7 +33,7 @@ class ExamAPITest(
     }
 }) {
     @MockBean(ExamService::class)
-    fun mathService(): ExamService {
+    fun examService(): ExamService {
         return mockk()
     }
 }
