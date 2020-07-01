@@ -26,8 +26,8 @@ class ExamAPITest(
         val body = """
             {
                 "type":1,
-                "answer":1
-                "answer_text":""
+                "answer":1,
+                "answerText":""
             }
         """.trimIndent()
         val retrieve = client.toBlocking().retrieve(HttpRequest.PUT("/exams/1/questions/1/answer", body), Response::class.java)
