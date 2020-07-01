@@ -1,4 +1,5 @@
 package com.example.domain.model.entity
 
-class Exam {
-}
+data class Exam (
+        val id:Long
+)

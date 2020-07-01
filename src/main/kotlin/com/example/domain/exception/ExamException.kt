@@ -1,4 +1,6 @@
 package com.example.domain.exception
 
-class ExamException : Exception() {
+open class ExamException : Exception() {
+}
+class ExamNotExistException:ExamException(){
 }

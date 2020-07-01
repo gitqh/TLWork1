@@ -12,7 +12,8 @@ class ExamService(
         val labelService: LabelService,
         val studentService: StudentService
 ) {
-    fun answer(examId: Int, questionId: Int, answerCommand: AnswerCommand) {
+    fun answer(examId: Long, questionId: Long, answerCommand: AnswerCommand) {
+        val exam = examRepository.findExamById(examId)
         return
     }
 }
