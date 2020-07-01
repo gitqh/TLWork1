@@ -9,6 +9,7 @@
 ![整体架构](resouce/整体架构.jpg)
 # 整洁架构与工序
 ![Test](resouce/工序.jpg)
+关于Test目录
 ```
 test目录下分为3个子目录:
     -application 
@@ -16,6 +17,10 @@ test目录下分为3个子目录:
     -representation
 分别对应3种测试，其中representation为API测试，也可以和application测试合并
 其中infrastructure启动了框架的上下文，通过配置将Mysql Fake成了H2内存数据库
+```
+关于外部系统的Stub
+```
+通过SpringCloudContract实现，见contracts目录
 ```
 # E-R图
 ![E-R图](resouce/E-R.png)
