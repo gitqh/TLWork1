@@ -7,7 +7,7 @@
 * Docker
 # 系统架构
 ![整体架构](resouces/整体架构.jpg)
-# 整洁架构与工序
+# 架构与工序
 ![Test](resouces/工序.jpg)
 关于Test目录
 ```
