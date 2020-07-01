@@ -9,7 +9,7 @@ import javax.persistence.Entity
 import javax.persistence.Id
 
 @Repository
-@JdbcRepository(dialect = Dialect.H2)
+@JdbcRepository(dialect = Dialect.MYSQL)
 interface ExamPlanMysqlRepository : CrudRepository<ExamPlanRecord, Long> {
     fun findByExamId(examId: Long): List<ExamPlanRecord>
 }
