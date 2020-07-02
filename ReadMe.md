@@ -25,7 +25,7 @@ StubBean通过框架测试套件注入
 ```
 关于外部系统的Fake
 ```
-DB:通过H2（或者Mariadb4j）内存数据库来替代mysql，或者通过docker启动mysql实例
+DB:通过H2（或者Mariadb4j）内存数据库来替代mysql，或者使用Testcontainers工具包通过docker启动mysql实例
 ```
 # E-R图
 ![E-R图](resouces/E-R.png)
